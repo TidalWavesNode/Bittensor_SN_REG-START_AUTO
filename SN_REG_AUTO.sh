@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Change directory to ~/tensorage/neurons
-cd ~/tensorage/neurons
+cd ~/map-reduce-subnet/neurons
 
 # Prompt user for the maximum registration cost they are willing to pay
 read -p "Enter the maximum registration cost you are willing to pay: " REGCOST
