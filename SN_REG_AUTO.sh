@@ -36,7 +36,7 @@ register() {
         echo "The cost to register is within your specified limit. Proceeding with registration..."
         # Run the registration command and input the password when prompted
         expect -c "
-            spawn btcli s register --subtensor.network finney --netuid $SN
+            spawn btcli s register --subtensor.network finney --netuid $SN --wallet.name default --wallet.hotkey default 
             expect \"Are you sure you want to register? (y/n):\"
             send \"y\r\"
             expect \"Enter your wallet password:\"
