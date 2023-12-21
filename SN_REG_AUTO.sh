@@ -10,9 +10,6 @@ read -p "Enter the maximum registration cost you are willing to pay: " REGCOST
 read -s -p "Enter your wallet password: " PW
 echo
 
-# Prompt user for the miner start script
-read -p "Enter the command to start your miner: " START
-
 # Prompt user for the sleep interval between registration attempts
 read -p "Enter the sleep interval (in seconds) between registration attempts (default 600): " SLEEP_INTERVAL
 
@@ -57,7 +54,3 @@ while true; do
         sleep $SLEEP_INTERVAL
     fi
 done
-
-# Run the miner start script
-echo "Starting your miner..."
-eval $START
