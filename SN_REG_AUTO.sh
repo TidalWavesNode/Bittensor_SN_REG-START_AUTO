@@ -21,11 +21,11 @@ fi
 # Function to check registration cost and perform registration
 register() {
     # Check the cost to register
-    COST_OUTPUT=$(btcli s list | awk '$1 == $SN {sub(/τ/, "", $6); print $6}')
-    REGISTRATION_COST=$(echo "$COST_OUTPUT" | grep -oP 'The cost to register is \K[0-9.]+')
+    COST_OUTPUT=$(btcli s list | awk -v sn="$SN" '$1 == sn {sub(/τ/, "", $6); print $6}')
+    REGISTRATION_COST=$(echo "$COST_OUTPUT" | grep -oP '^[0-9.]+')
 
     # Display the registration cost and user's maximum acceptable amount
-    echo "Current Registration Cost: $REGISTRATION_COST"
+    echo "Current Registration Cost: $COST_OUTPUT"
     echo "Your Maximum Acceptable Amount: $REGCOST"
 
     # Countdown for 5 seconds
@@ -41,7 +41,7 @@ register() {
         echo "The cost to register is within your specified limit. Proceeding with registration..."
         # Run the registration command and input the password when prompted
         expect -c "
-            spawn btcli s register --subtensor.network finney --netuid $SN --wallet.name default --wallet.hotkey default 
+            spawn btcli s register --subtensor.network finney --netuid $SN --wallet.name default --wallet.hotkey default
             expect \"Are you sure you want to register? (y/n):\"
             send \"y\r\"
             expect \"Enter your wallet password:\"
