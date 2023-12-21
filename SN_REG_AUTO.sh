@@ -1,5 +1,23 @@
 #!/bin/bash
 
+# Check if bc is installed, and install it if not
+if ! command -v bc &> /dev/null; then
+    echo "bc not found. Installing..."
+    sudo apt-get install -y bc   # For Debian-based systems (like Ubuntu)
+    # OR
+    # sudo yum install -y bc     # For Red Hat-based systems (like CentOS)
+fi
+
+# Check if expect is installed, and install it if not
+if ! command -v expect &> /dev/null; then
+    echo "expect not found. Installing..."
+    sudo apt-get install -y expect   # For Debian-based systems (like Ubuntu)
+    # OR
+    # sudo yum install -y expect     # For Red Hat-based systems (like CentOS)
+fi
+
+# Continue with the rest of your script
+
 # Prompt user for the subnet number
 read -p "Enter the subnet number: " SN
 
