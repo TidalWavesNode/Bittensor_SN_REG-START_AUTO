@@ -27,7 +27,7 @@ fi
 # Function to check registration cost and perform registration
 register() {
     # Check the cost to register
-    COST_OUTPUT=$(btcli s register --subtensor.network finney --netuid $SN --dry-run)
+    COST_OUTPUT=$(btcli s list | awk '$1 == $SN {print $6}')
     REGISTRATION_COST=$(echo "$COST_OUTPUT" | grep -oP 'The cost to register is \K[0-9.]+')
 
     # Compare the registration cost with the user's maximum willing to pay
