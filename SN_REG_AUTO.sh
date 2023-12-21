@@ -24,6 +24,17 @@ register() {
     COST_OUTPUT=$(btcli s list | awk '$1 == $SN {sub(/τ/, "", $6); print $6}')
     REGISTRATION_COST=$(echo "$COST_OUTPUT" | grep -oP 'The cost to register is \K[0-9.]+')
 
+    # Display the registration cost and user's maximum acceptable amount
+    echo "Current Registration Cost: $REGISTRATION_COST"
+    echo "Your Maximum Acceptable Amount: $REGCOST"
+
+    # Countdown for 5 seconds
+    for i in {5..1}; do
+        echo -n "Proceeding in $i seconds... "
+        sleep 1
+    done
+    echo "Proceeding now."
+
     # Compare the registration cost with the user's maximum willing to pay
     if (( $(echo "$REGISTRATION_COST < $REGCOST" | bc -l) )); then
         # If the cost is less than the maximum the user is willing to pay, proceed with registration
@@ -39,7 +50,7 @@ register() {
         "
         return 0
     else
-        echo "The cost to register is greater than your specified limit. Registration aborted."
+        echo "The cost to register is greater than your specified limit. Registration will be attempted again."
         return 1
     fi
 }
