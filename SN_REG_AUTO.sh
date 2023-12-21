@@ -1,13 +1,10 @@
 #!/bin/bash
 
-# Change directory to ~/tensorage/neurons
-cd ~/map-reduce-subnet/neurons
+# Prompt user for the subnet number
+read -p "Enter the subnet number: " SN
 
 # Prompt user for the maximum registration cost they are willing to pay
 read -p "Enter the maximum registration cost you are willing to pay: " REGCOST
-
-# Prompt user for the subnet number
-read -p "Enter the subnet number: " SN
 
 # Prompt user for the wallet password and save it as PW
 read -s -p "Enter your wallet password: " PW
